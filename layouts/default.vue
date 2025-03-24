@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  Index
+  <SectionNavbar/>
+  <slot/>
+  <SectionFooter/>
 </template>
 
 <style scoped>

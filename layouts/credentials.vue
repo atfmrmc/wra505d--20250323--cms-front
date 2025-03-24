@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  Index
+  <slot/>
 </template>
 
 <style scoped>
