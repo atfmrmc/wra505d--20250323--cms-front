@@ -1,11 +1,11 @@
-export const useUserStore = defineStore('user', () => {
+export const useSessionStore = defineStore('user', () => {
     const token = ref('');
     const loggedIn = ref(false)
     const user = reactive({
         "id": "",
         "email": "",
-        "firstname": "",
-        "lastname": "",
+        "firstName": "",
+        "lastName": "",
         "roles": [],
     });
     const setToken = (data: string) => {
@@ -25,10 +25,10 @@ export const useUserStore = defineStore('user', () => {
     }
 
     const setUser = (data: any) => {
-        user.id = data.id;
+        user.id = data.id ?? user.id;
         user.email = data.email;
-        user.firstname = data.firstname;
-        user.lastname = data.lastname;
+        user.firstName = data.firstname;
+        user.lastName = data.lastname;
         user.roles = data.roles;
     }
 
@@ -36,13 +36,23 @@ export const useUserStore = defineStore('user', () => {
         return user;
     }
 
+    /**
+     * Set the login data when a users logs in
+     * @param data
+     */
+    const setLogin = (data: any) => {
+        setToken(data.token);
+        setLoggedIn(true);
+        setUser(data.user);
+    }
+
     const clearUser = () => {
         token.value = '';
         loggedIn.value = false;
         user.id = '';
         user.email = '';
-        user.firstname = '';
-        user.lastname = '';
+        user.firstName = '';
+        user.lastName = '';
         user.roles = [];
     }
 
@@ -56,6 +66,7 @@ export const useUserStore = defineStore('user', () => {
         getLoggedIn,
         setUser,
         getUser,
+        setLogin,
         clearUser,
     }
 }, {

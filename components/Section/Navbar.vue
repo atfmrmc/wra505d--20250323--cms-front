@@ -1,20 +1,19 @@
 <script lang="ts" setup>
 
-const {logoutUser} = userHandler();
+import {useSessionStore} from "~/stores/session";
 
-const user = useUserStore();
+const session = useSessionStore();
 
-await callOnce('user', () => user.getUser());
-
+await callOnce('user', () => session.getUser());
 
 </script>
 
 <template>
   <header>
     <nav>
-      <NuxtLink to='/'>Home</NuxtLink>
-      <button v-if="user.loggedIn" @click='logoutUser'>Logout</button>
-      <NuxtLink v-else to='/login'>Login</NuxtLink>
+      <NuxtLink v-if="session.loggedIn" to="/options/profile">Profil</NuxtLink>
+
+      <NuxtLink v-else to='/login'>Se connecter</NuxtLink>
     </nav>
   </header>
 </template>
