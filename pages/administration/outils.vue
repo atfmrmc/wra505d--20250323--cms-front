@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-
+  <NuxtLink to='/administration/editeur/nouveau'>Nouveau</NuxtLink>
 </template>
 
 <style scoped>

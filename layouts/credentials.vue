@@ -3,6 +3,7 @@
 </script>
 
 <template>
+  <NuxtLink to="/">Retourner</NuxtLink>
   <slot/>
 </template>
 
