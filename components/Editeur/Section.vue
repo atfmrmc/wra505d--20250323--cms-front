@@ -1,38 +1,94 @@
 <script lang="ts" setup>
-const postContent = reactive({
-  title: '',
-  cover: '',
-  metaTitle: '',
-  metaDescription: '',
-  content: '',
-  tags: []
-})
+
+const props = defineProps<{
+  submitError: string,
+  postContent: {
+    cover: any,
+    title: string,
+    content: string,
+    metaTitle: string,
+    metaDescription: string,
+    tags: string[]
+  }
+}>();
+
+
+/**
+ * Manage Tags
+ */
+let newTag = ''
+
+function addTag() {
+  props.postContent.tags.push(newTag);
+  newTag = '';
+}
+
+function removeTag(index: number) {
+  props.postContent.tags.splice(index, 1)
+}
+
+/**
+ * Manage File
+ */
+const coverError = ref<string>('');
+
+// TODO : Fix type
+function handleFileChange(event: any) {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files.length > 0) {
+    props.postContent.cover = target.files[0];
+  }
+  if (props.postContent.cover) {
+    if (props.postContent.cover.size > 242880) {
+      coverError.value = 'Image size should be less than 5MB';
+      props.postContent.cover = '';
+      event.target.value = '';
+    } else if (!['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'].includes(props.postContent.cover.type)) {
+      coverError.value = 'Image type should be jpeg, png, webp, or svg+xml';
+      props.postContent.cover = '';
+      event.target.value = '';
+    } else {
+      coverError.value = '';
+    }
+  }
+}
+
+const emit = defineEmits<{
+  (e: 'submitContent', payload: typeof props.postContent): void
+}>();
+
 </script>
 
 <template>
-  <form>
+  <form @submit.prevent="emit('submitContent', props.postContent)">
     <label for="title">Titre
-      <input id="title" v-model="postContent.title" type="text"/>
+      <input id="title" v-model="props.postContent.title" type="text"/>
     </label>
     <label for="cover">Cover
-      <input id="cover" type="file"/>
+      <input id="cover" accept="image/*" type="file" @change='handleFileChange'/>
     </label>
+    <p v-if="coverError">{{ coverError }}</p>
     <label for="content">Description
-      <textarea id="content" v-model="postContent.content"></textarea>
+      <textarea id="content" v-model=" props.postContent.content"></textarea>
     </label>
-    <label for="tags">Étiquettes
-      <input id="tags" v-model="postContent.tags" type="text"/>
+
+    <label> Tags
+      <input v-model="newTag" type="text"/>
+      <button type="button" @click="addTag">Ajouter un tag</button>
+      <ul>
+        <li v-for="(tag, index) in props.postContent.tags" :key="index" @click="removeTag(index)">{{ tag }}
+        </li>
+      </ul>
     </label>
+
     <label for="metaTitle">Titre Meta
-      <input id="metaTitle" v-model="postContent.metaTitle" type="text"/>
+      <input id="metaTitle" v-model="props.postContent.metaTitle" type="text"/>
     </label>
     <label for="metaDescription">Description Meta
-      <input id="metaDescription" v-model="postContent.metaDescription" type="text"/>
+      <input id="metaDescription" v-model="props.postContent.metaDescription" type="text"/>
     </label>
     <button type="submit">Enregistrer</button>
+
+    <p v-if="submitError"> {{ submitError }} </p>
   </form>
 </template>
-
-<style scoped>
-
-</style>
