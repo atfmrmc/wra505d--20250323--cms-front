@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+definePageMeta({
+  layout: 'credentials',
+})
+
 const {loginUser} = userHandler();
 
 const credentials = reactive({
