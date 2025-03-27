@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 const props = defineProps<{
   submitError: string,
   postContent: {
@@ -11,7 +10,6 @@ const props = defineProps<{
     tags: string[]
   }
 }>();
-
 
 /**
  * Manage Tags
@@ -39,7 +37,7 @@ function handleFileChange(event: any) {
     props.postContent.cover = target.files[0];
   }
   if (props.postContent.cover) {
-    if (props.postContent.cover.size > 242880) {
+    if (props.postContent.cover.size > 5242880) {
       coverError.value = 'Image size should be less than 5MB';
       props.postContent.cover = '';
       event.target.value = '';
@@ -87,7 +85,7 @@ const emit = defineEmits<{
     <label for="metaDescription">Description Meta
       <input id="metaDescription" v-model="props.postContent.metaDescription" type="text"/>
     </label>
-    <button type="submit">Enregistrer</button>
+    <button type="submit">Publier</button>
 
     <p v-if="submitError"> {{ submitError }} </p>
   </form>

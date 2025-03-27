@@ -10,4 +10,5 @@ export default defineNuxtConfig({
             apiBase: process.env.NUXT_API_URL,
         }
     },
+    ssr: false
 })

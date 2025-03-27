@@ -14,10 +14,10 @@ const submitError = ref<string>('');
 // TODO : Fix type
 const postContent = reactive({
   cover: null,
-  title: null,
-  content: null,
-  metaTitle: null,
-  metaDescription: null,
+  title: "",
+  content: "",
+  metaTitle: "",
+  metaDescription: "",
   tags: [],
 })
 
@@ -32,9 +32,12 @@ async function handleSubmit() {
     return;
   }
 
+  if (!postContent.metaTitle) {
+    postContent.metaTitle = postContent.title;
+  }
+
   try {
-    console.log(postContent)
-    await $fetch(`${runtimeConfig.public.apiBase}/api/contents`, {
+    const response: any = await $fetch(`${runtimeConfig.public.apiBase}/api/contents`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/ld+json',
@@ -43,9 +46,16 @@ async function handleSubmit() {
       },
       body: postContent
     });
-  } catch (error: any) {
 
-    submitError.value = error.message;
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+    } else {
+      submitError.value = 'An error occurred';
+    }
+
+  } catch (error: any) {
+    console.log(error);
   }
 }
 
