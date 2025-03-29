@@ -52,8 +52,6 @@ function handleFileChange(event: any) {
       coverError.value = '';
     }
   }
-
-  console.log(props.postContent.cover);
 }
 
 const emit = defineEmits<{

@@ -8,8 +8,6 @@ const {data, status, error, refresh, clear} = await <any>
 
 
 const tool = data.value.member[0];
-
-console.log(tool)
 </script>
 
 <template>

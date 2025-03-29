@@ -6,7 +6,7 @@ definePageMeta({
 import {useSessionStore} from "~/stores/session";
 
 const runtimeConfig = useRuntimeConfig();
-const {setLogin, getToken, getUser, setUser, clearUser} = useSessionStore();
+const {getToken} = useSessionStore();
 const route = useRoute();
 
 
@@ -15,7 +15,6 @@ const {data, status, error, refresh, clear} = await <any>
 
 
 const tool = data.value.member[0];
-console.log(tool.tags)
 
 // Saves errors from form submission
 const submitError = ref<string>('');
@@ -61,17 +60,16 @@ async function handleSubmit() {
       postContent.cover = uploadResponse['@id'];
 
     } catch (error: any) {
-      submitError.value = `File Upload Failed: ${error.data?.message || error.message || 'Unknown error'}`;
+      submitError.value = `Erreur de téléchargement de fichier : ${error.data?.message || error.message || 'Erreur inconnue'}`;
       return;
     }
   }
 
-  console.log('postContent', postContent);
   try {
     const response: any = await $fetch(`${runtimeConfig.public.apiBase}${tool['@id']}`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/ld+json',
+        'Content-Type': 'application/merge-patch+json',
         'Accept': 'application/ld+json',
         'Authorization': `${getToken()}`
       },
@@ -80,11 +78,8 @@ async function handleSubmit() {
     await navigateTo('/outils/' + response.slug);
 
   } catch (error: any) {
-    if (error.status === 422) {
-      submitError.value = `Validation Error: ${error.data?.message || error.message || 'Unknown error'}`;
-    } else {
-      submitError.value = `Submission Failed: ${error.data?.message || error.message || 'Unknown error'}`;
-    }
+    submitError.value = `Erreur de soumission : ${error.data?.message || error.message || 'Erreur inconnue'}`;
+    return;
   }
 }
 </script>
