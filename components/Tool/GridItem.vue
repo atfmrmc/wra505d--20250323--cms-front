@@ -3,8 +3,7 @@ const props = defineProps<{
   tool: any,
 }>()
 
-console.log(props.tool)
-
+//console.log(props.tool)
 
 /*
   {
@@ -27,8 +26,7 @@ console.log(props.tool)
 </script>
 
 <template>
-  test
-  <NuxtLink>
+  <NuxtLink :to="`/outils/${props.tool.slug}`">
     <h2> {{ props.tool.title }} </h2>
   </NuxtLink>
 </template>

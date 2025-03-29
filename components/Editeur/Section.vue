@@ -14,9 +14,12 @@ const props = defineProps<{
 /**
  * Manage Tags
  */
-let newTag = ''
+let newTag: string = ''
 
 function addTag() {
+  if (newTag === '') {
+    return;
+  }
   props.postContent.tags.push(newTag);
   newTag = '';
 }
@@ -49,6 +52,8 @@ function handleFileChange(event: any) {
       coverError.value = '';
     }
   }
+
+  console.log(props.postContent.cover);
 }
 
 const emit = defineEmits<{

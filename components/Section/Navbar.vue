@@ -11,6 +11,7 @@ await callOnce('user', () => session.getUser());
 <template>
   <header>
     <nav>
+      <NuxtLink to="/">Accueil</NuxtLink>
       <NuxtLink v-if="session.user.roles.includes('ROLE_ADMIN') || session.user.roles.includes('ROLE_SUPERADMIN')"
                 to="/administration/dashboard">
         Administration

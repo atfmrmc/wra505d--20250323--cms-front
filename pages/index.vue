@@ -1,22 +1,35 @@
 <script lang="ts" setup>
 const runtimeConfig = useRuntimeConfig();
 
-const {data: tools, status, error, refresh, clear} = await
+const {data, status, error, refresh, clear} = await
     useFetch(`${runtimeConfig.public.apiBase}/api/contents`);
 
-//console.log('Tools: ', tools)
-
-
-// forea each console log
-tools.value.forEach((tool: any) => {
-  console.log(tool)
-})
+const tools = data.value.member;
 
 </script>
 
 <template>
-  <div v-if='status'>
-    <ToolGridItem v-for='tool in tools' :tool='tool'/>
+  <div>
+    <h1>Tools List</h1>
+
+    <div v-if="status === 'pending'">
+      Loading tools...
+    </div>
+
+    <div v-else-if="error">
+      Error loading tools: {{ error.message }}
+      <button @click="refresh">Retry</button>
+    </div>
+
+    <div v-else-if="tools && tools && tools.length">
+
+      <ToolGridItem v-for="tool in tools" :key="tool.id" :tool="tool"/>
+    </div>
+
+    <div v-else>
+      No tools found.
+    </div>
+
   </div>
 </template>
 

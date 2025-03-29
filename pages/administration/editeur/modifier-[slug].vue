@@ -7,7 +7,15 @@ import {useSessionStore} from "~/stores/session";
 
 const runtimeConfig = useRuntimeConfig();
 const {setLogin, getToken, getUser, setUser, clearUser} = useSessionStore();
+const route = useRoute();
 
+
+const {data, status, error, refresh, clear} = await <any>
+    useFetch(`${runtimeConfig.public.apiBase}/api/contents?slug=${route.params.slug}`);
+
+
+const tool = data.value.member[0];
+console.log(tool.tags)
 
 // Saves errors from form submission
 const submitError = ref<string>('');
@@ -15,11 +23,11 @@ const submitError = ref<string>('');
 // TODO : Fix type
 const postContent = reactive({
   cover: null,
-  title: "",
-  content: "",
-  metaTitle: "",
-  metaDescription: "",
-  tags: [],
+  title: tool.title || "",
+  content: tool.content || "",
+  metaTitle: tool.metaTitle || "",
+  metaDescription: tool.metaDescription || "",
+  tags: tool.tags || [],
 })
 
 async function handleSubmit() {
@@ -38,7 +46,6 @@ async function handleSubmit() {
   }
 
   if (postContent.cover) {
-
     const formData = new FormData();
     formData.append('file', postContent.cover);
 
@@ -59,10 +66,10 @@ async function handleSubmit() {
     }
   }
 
-  
+  console.log('postContent', postContent);
   try {
-    const response: any = await $fetch(`${runtimeConfig.public.apiBase}/api/contents`, {
-      method: 'POST',
+    const response: any = await $fetch(`${runtimeConfig.public.apiBase}${tool['@id']}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/ld+json',
         'Accept': 'application/ld+json',
@@ -80,7 +87,6 @@ async function handleSubmit() {
     }
   }
 }
-
 </script>
 
 <template>
