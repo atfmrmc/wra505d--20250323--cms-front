@@ -1,0 +1,63 @@
+.tool--grid--item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.tool--grid--item::before {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  height: 42%;
+  width: 100%;
+  background: #18181b;
+  border: solid 1px #27272a;
+  border-radius: 8px;
+}
+.tool--grid--item--content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+.tool--grid--item--title {
+  font-size: 24px;
+}
+.tool--grid--item img {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  filter: grayscale(80%);
+}
+.tool--grid--item--tags {
+  font-size: 12px;
+  padding: 0 8px;
+  background: #27272a;
+  border: solid 1px #3f3f46;
+  border-radius: 4px;
+}
+.tool--grid--item--tags--container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
+  list-style: none;
+}
+.tool--grid--item:hover img {
+  filter: grayscale(0%);
+}
+.tool--grid--item:hover::before {
+  background: #27272a;
+  border: solid 1px #3f3f46;
+}
+.tool--grid--item:hover .tool--grid--item--tags {
+  background: #3f3f46;
+  border: solid 1px #52525b;
+}
+
+/*# sourceMappingURL=item.css.map */

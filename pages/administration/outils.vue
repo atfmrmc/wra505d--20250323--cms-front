@@ -2,7 +2,7 @@
 import {useSessionStore} from "~/stores/session";
 
 definePageMeta({
-  layout: 'dashboard',
+  layout: 'admin-dashboard',
 })
 
 const runtimeConfig = useRuntimeConfig();
@@ -10,8 +10,6 @@ const {getToken} = useSessionStore();
 
 const {data: tool, status, error, refresh, clear} = await
     useFetch(`${runtimeConfig.public.apiBase}/api/contents`);
-
-console.log('tool', tool);
 
 async function deleteTool(id: number) {
   try {
@@ -31,30 +29,40 @@ async function deleteTool(id: number) {
 </script>
 
 <template>
-  <NuxtLink to='/administration/editeur/nouveau'>Nouveau</NuxtLink>
-  <h1>Tools List</h1>
-  <div>
-    <table>
-      <thead>
-      <tr>
-        <th>Titre</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="tool in tool?.member" :key="tool.id">
-        <td>{{ tool.title }}</td>
-        <td>
-          <NuxtLink :to="`/administration/editeur/modifier=${tool.slug}`">Modifier</NuxtLink>
-          <button @click="deleteTool(tool.id)">Supprimer</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <h1>Liste des outils</h1>
+  <NuxtLink class="btn" to='/administration/editeur/nouveau'>
+    <font-awesome-icon :icon="['fas', 'plus']"/>
+    Nouveau
+  </NuxtLink>
 
-  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="tool in tool?.member" :key="tool.id">
+      <td>{{ tool.title }}</td>
+      <td>
+        <div class='row'>
+          <NuxtLink :to="`/administration/editeur/modifier=${tool.slug}`" class='btn no-default'>
+            <font-awesome-icon :icon="['fas', 'pen-to-square']"/>
+            Modifier
+          </NuxtLink>
+          <button class='btn no-default' @click="deleteTool(tool.id)">
+            <font-awesome-icon :icon="['fas', 'xmark']"/>
+            Supprimer
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
 </template>
 
 <style scoped>
-
+@import "assets/styles/layouts/dashboard.css";
 </style>

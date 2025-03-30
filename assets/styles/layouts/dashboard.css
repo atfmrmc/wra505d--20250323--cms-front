@@ -1,0 +1,62 @@
+.dashboard {
+  max-width: unset;
+  padding: 0;
+}
+.dashboard--container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+}
+.dashboard--navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #18181b;
+  border: solid 1px #27272a;
+}
+.dashboard--navbar a, .dashboard--navbar button {
+  width: 100%;
+  border-radius: 0;
+  padding: 12px 16px;
+}
+.dashboard--navbar hr {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #27272a;
+}
+.dashboard--content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+}
+.dashboard--content table, .dashboard--content tr, .dashboard--content td {
+  border: 1px inset #3f3f46;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.dashboard--content table {
+  width: 100%;
+}
+.dashboard--content table thead th {
+  padding: 8px;
+  font-size: 20px;
+  background-color: #27272a;
+}
+.dashboard--content table tr td {
+  padding: 8px;
+  font-size: 16px;
+}
+.dashboard--content table tr td .row {
+  display: flex;
+  gap: 8px;
+}
+.dashboard--content table tr:nth-child(odd) {
+  background-color: #18181b;
+}
+.dashboard--content table tr:hover {
+  background-color: #27272a !important;
+}
+
+/*# sourceMappingURL=dashboard.css.map */

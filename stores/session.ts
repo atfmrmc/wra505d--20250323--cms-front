@@ -20,9 +20,15 @@ export const useSessionStore = defineStore('user', () => {
         loggedIn.value = data;
     }
 
-    const getLoggedIn = () => {
-        return loggedIn.value;
+    const getLoggedIn = (): boolean => {
+        if (loggedIn === false || loggedIn === null) {
+            return false;
+        }
+        if (loggedIn === true) {
+            return true;
+        }
     }
+
 
     const setUser = (data: any) => {
         user.id = data.id ?? user.id;

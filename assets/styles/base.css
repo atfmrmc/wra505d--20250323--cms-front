@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  padding: 20px;
+  max-width: 1280px;
+  font-family: "Noto Sans", sans-serif;
+  background-color: #09090b;
+  color: #fafafa;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+  gap: 12px;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+.btn, button {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: max-content;
+  padding: 8px 16px;
+  gap: 8px;
+  font-size: 16px;
+  color: #fafafa;
+  outline: 1px solid #27272a;
+  border: none;
+  border-radius: 4px;
+  background: #18181b;
+  cursor: pointer;
+  appearance: none;
+}
+.btn:hover, button:hover {
+  background: #3f3f46;
+  outline: 1px solid #52525b;
+}
+.btn.no-default, button.no-default {
+  background: none;
+  outline: none;
+  padding: 4px 12px;
+}
+.btn.no-default:hover, button.no-default:hover {
+  background: #3f3f46;
+  outline: 1px solid #52525b;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 0 8px;
+  gap: 4px;
+  background: #27272a;
+  border: solid 1px #3f3f46;
+  border-radius: 4px;
+}
+.tags--container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
+  list-style: none;
+}
+.tags svg {
+  max-width: 10px;
+  color: #71717a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  padding: 20px;
+  gap: 20px;
+  border: solid 1px #18181b;
+  border-radius: 4px;
+}
+form .center {
+  margin: 0 auto;
+}
+form .heading {
+  font-size: 32px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 20px;
+}
+
+input, textarea {
+  padding: 8px;
+  font-size: 16px;
+  outline: transparent;
+  border: 1px solid #27272a;
+  border-radius: 4px;
+  background: #18181b;
+  color: #fafafa;
+  width: 100%;
+  resize: vertical;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border: solid 1px #52525b;
+  background: #27272a;
+}
+
+textarea {
+  min-height: 200px;
+}
+
+.checkbox-has-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+.checkbox-has-tag input {
+  width: max-content;
+  margin: 0;
+  padding: 0;
+}
+
+/*# sourceMappingURL=base.css.map */

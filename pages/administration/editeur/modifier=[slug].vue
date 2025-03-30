@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-definePageMeta({
-  layout: 'dashboard',
-})
-
+import type {NewTool} from "~/types/NewTool";
 import {useSessionStore} from "~/stores/session";
+
+definePageMeta({
+  layout: 'admin-dashboard',
+})
 
 const runtimeConfig = useRuntimeConfig();
 const {getToken} = useSessionStore();
@@ -20,8 +21,8 @@ const tool = data.value.member[0];
 const submitError = ref<string>('');
 
 // TODO : Fix type
-const postContent = reactive({
-  cover: null,
+const postContent = reactive<NewTool>({
+  cover: undefined,
   title: tool.title || "",
   content: tool.content || "",
   metaTitle: tool.metaTitle || "",
@@ -63,6 +64,9 @@ async function handleSubmit() {
       submitError.value = `Erreur de téléchargement de fichier : ${error.data?.message || error.message || 'Erreur inconnue'}`;
       return;
     }
+  } else {
+    // romove cover from postContent if not provided
+    delete postContent.cover;
   }
 
   try {
@@ -85,9 +89,10 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <EditeurSection :post-content='postContent' :submit-error='submitError' @submitContent='handleSubmit'/>
+  <h1>Modifier l'outil</h1>
+  <EditorForm :post-content='postContent' :submit-error='submitError' @submitContent='handleSubmit'/>
 </template>
 
 <style scoped>
-
+@import "assets/styles/layouts/dashboard.css";
 </style>

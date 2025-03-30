@@ -1,0 +1,11 @@
+.home--navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #18181b;
+  border: solid 1px #27272a;
+  border-radius: 8px;
+}
+
+/*# sourceMappingURL=navbar.css.map */
