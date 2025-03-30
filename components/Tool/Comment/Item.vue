@@ -12,20 +12,18 @@ const {getToken, getUser} = useSessionStore();
 const submitError = ref<string>('');
 
 async function deleteComment() {
-  if (confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) {
-    try {
-      await $fetch(`${runtimeConfig.public.apiBase}${props.comment['@id']}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `${getToken()}`
-        }
-      });
+  try {
+    await $fetch(`${runtimeConfig.public.apiBase}${props.comment['@id']}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `${getToken()}`
+      }
+    });
 
-      emit("refreshList");
+    emit("refreshList");
 
-    } catch (error: any) {
-      submitError.value = `Suppression échouée : ${error.data?.message || error.message || 'Erreur inconnue'}`;
-    }
+  } catch (error: any) {
+    submitError.value = `Suppression échouée : ${error.data?.message || error.message || 'Erreur inconnue'}`;
   }
 }
 </script>
