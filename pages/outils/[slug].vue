@@ -1,10 +1,5 @@
 <script lang="ts" setup>
-useHead({
-  title: 'Toolist - Trouve l\'outil qu\'il te faut',
-  bodyAttrs: {
-    class: 'tool'
-  },
-})
+
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 
@@ -12,6 +7,19 @@ const {data, status, error, refresh, clear} = await <any>
     useFetch(`${runtimeConfig.public.apiBase}/api/contents?slug=${route.params.slug}`);
 
 const tool = data.value.member[0];
+
+useHead({
+  title: tool.metaTitle,
+  meta: [
+    {name: 'description', content: tool.metaDescription},
+    {property: 'og:title', content: tool.metaTitle},
+    {property: 'og:description', content: tool.metaDescription},
+    {property: 'og:image', content: `${runtimeConfig.public.apiBase}${tool.coverPath}`},
+  ],
+  bodyAttrs: {
+    class: 'tool'
+  },
+})
 </script>
 
 <template>

@@ -75,7 +75,7 @@ async function changeRole(status: boolean, id: string, currentRoles: string[], c
 </script>
 
 <template>
-  <h1>Users List</h1>
+  <h1>Liste des utilisateurs</h1>
   <div>
     <table>
       <thead>
