@@ -2,8 +2,12 @@
 import {useSessionStore} from "~/stores/session";
 
 definePageMeta({
-  layout: 'dashboard',
+  layout: 'admin-dashboard',
 })
+
+const {superAdminProtection} = adminProtectionHandler();
+
+superAdminProtection()
 
 const runtimeConfig = useRuntimeConfig();
 const {getToken} = useSessionStore();
@@ -38,8 +42,34 @@ async function deleteUser(id: string) {
   }
 }
 
-async function changeRole(id: string, role: string) {
+async function changeRole(status: boolean, id: string, currentRoles: string[], changedRole: string) {
+  try {
+    let updatedRoles: string[];
 
+    if (status) {
+      updatedRoles = currentRoles.includes(changedRole)
+          ? currentRoles
+          : [...currentRoles, changedRole];
+    } else {
+      updatedRoles = currentRoles.filter((r) => r !== changedRole);
+    }
+
+    await $fetch(`${runtimeConfig.public.apiBase}${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `${getToken()}`,
+        'Content-Type': 'application/merge-patch+json',
+        'Accept': 'application/ld+json'
+      },
+      body: JSON.stringify({
+        roles: updatedRoles
+      })
+    });
+
+    await refresh();
+  } catch (e) {
+    console.error("Erreur pendant la modification du rôle de l'utilisateur", e);
+  }
 }
 
 </script>
@@ -64,13 +94,13 @@ async function changeRole(id: string, role: string) {
           <label>
             <input :checked="user.roles.includes('ROLE_ADMIN')"
                    type="checkbox"
-                   @change="changeRole(user['@id'], 'ROLE_ADMIN')"/>
+                   @change="(event) => changeRole(event.target?.checked ,user['@id'], user.roles, 'ROLE_ADMIN',)"/>
             Author
           </label>
           <label>
             <input :checked="user.roles.includes('ROLE_SUPERADMIN')"
                    type="checkbox"
-                   @change="changeRole(user['@id'], 'ROLE_SUPERADMIN')"/>
+                   @change="(event) => changeRole(event.target?.checked ,user['@id'], user.roles, 'ROLE_SUPERADMIN',)"/>
             Administrateur
           </label>
         </td>

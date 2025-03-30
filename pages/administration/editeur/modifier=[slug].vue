@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'dashboard',
+  layout: 'admin-dashboard',
 })
 
 import {useSessionStore} from "~/stores/session";
@@ -85,7 +85,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <EditeurSection :post-content='postContent' :submit-error='submitError' @submitContent='handleSubmit'/>
+  <EditorForm :post-content='postContent' :submit-error='submitError' @submitContent='handleSubmit'/>
 </template>
 
 <style scoped>

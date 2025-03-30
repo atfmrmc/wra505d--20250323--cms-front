@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const {updateUser} = userHandler();
+const {updateUserSession} = userHandler();
 
-updateUser();
+updateUserSession();
 
 </script>
 

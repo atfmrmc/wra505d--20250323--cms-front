@@ -2,10 +2,8 @@
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 
-
 const {data, status, error, refresh, clear} = await <any>
     useFetch(`${runtimeConfig.public.apiBase}/api/contents?slug=${route.params.slug}`);
-
 
 const tool = data.value.member[0];
 </script>
@@ -26,6 +24,8 @@ const tool = data.value.member[0];
   <img :src="`${runtimeConfig.public.apiBase}${tool.coverPath}`" alt="cover"/>
   <p>
     {{ tool.content }} </p>
+
+  <ToolCommentList :current-post="tool.id"/>
 
 </template>
 

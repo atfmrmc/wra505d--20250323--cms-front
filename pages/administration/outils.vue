@@ -2,7 +2,7 @@
 import {useSessionStore} from "~/stores/session";
 
 definePageMeta({
-  layout: 'dashboard',
+  layout: 'admin-dashboard',
 })
 
 const runtimeConfig = useRuntimeConfig();
@@ -10,8 +10,6 @@ const {getToken} = useSessionStore();
 
 const {data: tool, status, error, refresh, clear} = await
     useFetch(`${runtimeConfig.public.apiBase}/api/contents`);
-
-console.log('tool', tool);
 
 async function deleteTool(id: number) {
   try {

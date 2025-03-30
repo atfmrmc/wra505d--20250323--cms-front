@@ -12,22 +12,8 @@ const tools = data.value.member;
   <div>
     <h1>Tools List</h1>
 
-    <div v-if="status === 'pending'">
-      Loading tools...
-    </div>
-
-    <div v-else-if="error">
-      Error loading tools: {{ error.message }}
-      <button @click="refresh">Retry</button>
-    </div>
-
-    <div v-else-if="tools && tools && tools.length">
-
+    <div v-if="tools && tools && tools.length">
       <ToolGridItem v-for="tool in tools" :key="tool.id" :tool="tool"/>
-    </div>
-
-    <div v-else>
-      No tools found.
     </div>
 
   </div>

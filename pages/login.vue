@@ -18,5 +18,6 @@ const credentials = reactive({
     <input v-model="credentials.password" placeholder="Password" type="password"/>
     <button type="submit">Login</button>
   </form>
+  <NuxtLink to="/register">Register</NuxtLink>
 </template>
 
