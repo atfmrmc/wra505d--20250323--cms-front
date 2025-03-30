@@ -51,21 +51,29 @@ async function handleSubmitComment() {
 
 <template>
 
-  <form v-if='loggedIn === true' @submit.prevent="handleSubmitComment()">
-    <div>
-      <label for="comment">Commentaire</label>
+  <form v-if='loggedIn === true' class='tool--comments--form' @submit.prevent="handleSubmitComment()">
+    <label for="comment">
+        <span>
+          <font-awesome-icon :icon="['fas', 'comment-medical']"/> Ajouter Commentaire
+        </span>
       <textarea id="comment" v-model='newComment.comment' name="comment" required></textarea>
-    </div>
-    <button type="submit">Envoyer</button>
+    </label>
+    <button class='btn' type="submit">
+      <font-awesome-icon :icon="['fas', 'paper-plane']"/>
+      Envoyer
+    </button>
   </form>
 
-  <div v-else>
+  <div v-else class='tool--comments--form--not-logged'>
     <p>Vous devez être connecté pour laisser un commentaire.</p>
-    <NuxtLink to="/login">Se connecter</NuxtLink>
+    <NuxtLink class='btn' to="/login">
+      <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']"/>
+      Se connecter
+    </NuxtLink>
   </div>
 
 </template>
 
 <style scoped>
-
+@import "assets/styles/components/outil/comment/list.css";
 </style>

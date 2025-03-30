@@ -84,9 +84,11 @@ async function handleSubmit() {
 </script>
 
 <template>
+  <h1>
+    Ajouter un nouvel outil </h1>
   <EditorForm :post-content='postContent' :submit-error='submitError' @submitContent='handleSubmit'/>
 </template>
 
 <style scoped>
-
+@import "assets/styles/layouts/dashboard.css";
 </style>

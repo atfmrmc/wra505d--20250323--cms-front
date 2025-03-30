@@ -31,17 +31,21 @@ async function deleteComment() {
 </script>
 
 <template>
-  <div>
-    <p>{{ props.comment.comment }}</p>
-    <p>{{ props.comment.author.firstname }} {{ props.comment.author.lastname }}</p>
-    <p>{{ props.comment.createdAt }}</p>
+  <div class='tool--comments--item'>
+    <p class='tool--comments--item--name'>
+      <font-awesome-icon :icon="['fas', 'comment']"/>
+      {{ props.comment.author.firstname }} {{ props.comment.author.lastname }}
+    </p>
+    <p class='tool--comments--item--comment'>{{ props.comment.comment }}</p>
     <button v-if="props.comment.author.id ===  getUser().id ||getUser().roles.includes('ROLE_ADMIN') || getUser().roles.includes('ROLE_SUPERADMIN')"
+            class='btn is-button tool--comments--item--btn'
             @click="deleteComment">
+      <font-awesome-icon :icon="['fas', 'xmark']"/>
       Suprimer
     </button>
   </div>
 </template>
 
 <style scoped>
-
+@import "assets/styles/components/outil/comment/list.css";
 </style>

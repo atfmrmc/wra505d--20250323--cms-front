@@ -14,6 +14,10 @@ const userChanges = reactive({
 
 <template>
   <form @submit.prevent="updateUser(userChanges)">
+    <h2>
+      <font-awesome-icon :icon="['fas', 'user-pen']"/>
+      Modifier le nom
+    </h2>
     <label for="first-name">Prénom
       <input id="first-name" v-model="userChanges.firstname" name="first-name" type="text"/>
     </label>

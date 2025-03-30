@@ -82,7 +82,7 @@ async function changeRole(status: boolean, id: string, currentRoles: string[], c
       <tr>
         <th>Nom</th>
         <th>Email</th>
-        <th>Rôle</th>
+        <th>Rôles</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -91,21 +91,26 @@ async function changeRole(status: boolean, id: string, currentRoles: string[], c
         <td>{{ user.firstname }} {{ user.lastname }}</td>
         <td>{{ user.email }}</td>
         <td>
-          <label>
-            <input :checked="user.roles.includes('ROLE_ADMIN')"
-                   type="checkbox"
-                   @change="(event) => changeRole(event.target?.checked ,user['@id'], user.roles, 'ROLE_ADMIN',)"/>
-            Author
-          </label>
-          <label>
-            <input :checked="user.roles.includes('ROLE_SUPERADMIN')"
-                   type="checkbox"
-                   @change="(event) => changeRole(event.target?.checked ,user['@id'], user.roles, 'ROLE_SUPERADMIN',)"/>
-            Administrateur
-          </label>
+          <div class='row'>
+            <label class='checkbox-has-tag'>
+              <input :checked="user.roles.includes('ROLE_ADMIN')"
+                     type="checkbox"
+                     @change="(event) => changeRole(event.target?.checked ,user['@id'], user.roles, 'ROLE_ADMIN',)"/>
+              Author
+            </label>
+            <label class='checkbox-has-tag'>
+              <input :checked="user.roles.includes('ROLE_SUPERADMIN')"
+                     type="checkbox"
+                     @change="(event) => changeRole(event.target?.checked ,user['@id'], user.roles, 'ROLE_SUPERADMIN',)"/>
+              Administrateur
+            </label>
+          </div>
         </td>
         <td>
-          <button @click="deleteUser(user['@id'])">Supprimer</button>
+          <button class='btn no-default' @click="deleteUser(user['@id'])">
+            <font-awesome-icon :icon="['fas', 'xmark']"/>
+            Supprimer
+          </button>
         </td>
       </tr>
       </tbody>
@@ -114,5 +119,5 @@ async function changeRole(status: boolean, id: string, currentRoles: string[], c
 </template>
 
 <style scoped>
-
+@import "assets/styles/layouts/dashboard.css";
 </style>

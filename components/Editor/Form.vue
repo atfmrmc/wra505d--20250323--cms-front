@@ -2,7 +2,7 @@
 const props = defineProps<{
   submitError: string,
   postContent: {
-    cover: any,
+    cover?: any,
     title: string,
     content: string,
     metaTitle: string,
@@ -58,6 +58,7 @@ const emit = defineEmits<{
   (e: 'submitContent', payload: typeof props.postContent): void
 }>();
 
+
 </script>
 
 <template>
@@ -76,8 +77,10 @@ const emit = defineEmits<{
     <label> Tags
       <input v-model="newTag" type="text"/>
       <button type="button" @click="addTag">Ajouter un tag</button>
-      <ul>
-        <li v-for="(tag, index) in props.postContent.tags" :key="index" @click="removeTag(index)">{{ tag }}
+      <ul class='tags--container'>
+        <li v-for="(tag, index) in props.postContent.tags" :key="index" class='tags' @click="removeTag(index)">
+          <font-awesome-icon :icon="['fas', 'tag']"/>
+          {{ tag }}
         </li>
       </ul>
     </label>
@@ -88,7 +91,10 @@ const emit = defineEmits<{
     <label for="metaDescription">Description Meta
       <input id="metaDescription" v-model="props.postContent.metaDescription" type="text"/>
     </label>
-    <button type="submit">Publier</button>
+    <button type="submit">
+      <font-awesome-icon :icon="['fas', 'paper-plane']"/>
+      Publier
+    </button>
 
     <p v-if="submitError"> {{ submitError }} </p>
   </form>

@@ -3,13 +3,22 @@ const {updateUserSession} = userHandler();
 
 updateUserSession();
 
+useHead({
+  bodyAttrs: {
+    class: 'dashboard'
+  },
+})
 </script>
 
 <template>
-  <DashboardNavbar/>
-  <slot/>
+  <div class='dashboard--container'>
+    <DashboardNavbar/>
+    <section class='dashboard--content'>
+      <slot/>
+    </section>
+  </div>
 </template>
 
-<style scoped>
-
+<style>
+@import "assets/styles/layouts/dashboard.css";
 </style>

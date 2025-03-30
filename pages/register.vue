@@ -31,6 +31,10 @@ async function confirmRegistration(credentials: any, passwordConfirm: string) {
 
 <template>
   <form @submit.prevent="confirmRegistration(credentials, passwordConfirm)">
+    <h1 class='heading'>
+      <font-awesome-icon :icon="['fas', 'user-plus']"/>
+      Créer un compte
+    </h1>
     <label>
       Mail
       <input v-model="credentials.email" placeholder="Email" type="email"/>
@@ -51,9 +55,15 @@ async function confirmRegistration(credentials: any, passwordConfirm: string) {
       Nom
       <input v-model="credentials.lastname" placeholder="Lastname" type="text"/>
     </label>
-    <button type="submit">S'inscrire</button>
+    <button type="submit">
+      <font-awesome-icon :icon="['fas', 'paper-plane']"/>
+      S'inscrire
+    </button>
     <p v-if='registrationError'> {{ registrationError }}</p>
+    <NuxtLink class='center' to="/login">
+      <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']"/>
+      Se connecter
+    </NuxtLink>
   </form>
-  <NuxtLink to="/login">Se connecter</NuxtLink>
 </template>
 

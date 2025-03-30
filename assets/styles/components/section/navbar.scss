@@ -1,0 +1,16 @@
+@use '../../utils/spacing' as s;
+@use '../../utils/colors' as c;
+
+.home {
+  &--navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding: s.$s3 s.$s4;
+
+    background-color: c.$zinc-900;
+    border: solid 1px c.$zinc-800;
+    border-radius: s.$s2;
+  }
+}
