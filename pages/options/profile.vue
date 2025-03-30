@@ -1,13 +1,9 @@
 <script lang="ts" setup>
 import {useSessionStore} from "~/stores/session";
 
-const {updateUser} = userHandler();
-
 definePageMeta({
   layout: 'dashboard',
 })
-
-updateUser();
 
 const {getUser} = useSessionStore();
 const currentUser = getUser();

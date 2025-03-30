@@ -2,7 +2,7 @@ import {useSessionStore} from "~/stores/session";
 
 export const userHandler = () => {
     const runtimeConfig = useRuntimeConfig();
-    const {setLogin, getToken, getUser, setLoggedIn, setUser, clearUser} = useSessionStore();
+    const {setLogin, getToken, getUser, setUser, clearUser} = useSessionStore();
     const loginUser = async (credentials: any) => {
         try {
             const response: any = await $fetch(`${runtimeConfig.public.apiBase}/api/login`, {
@@ -39,7 +39,7 @@ export const userHandler = () => {
                     'Authorization': `${getToken()}`
                 },
             });
-            
+
             setUser(response);
 
             return;

@@ -1,9 +1,12 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+const {updateUser} = userHandler();
+
+updateUser();
 
 </script>
 
 <template>
-  <DashboardNavbar />
+  <DashboardNavbar/>
   <slot/>
 </template>
 

@@ -11,8 +11,12 @@ await callOnce('user', () => session.getUser());
 <template>
   <header>
     <nav>
+      <NuxtLink to="/">Accueil</NuxtLink>
+      <NuxtLink v-if="session.user.roles.includes('ROLE_ADMIN') || session.user.roles.includes('ROLE_SUPERADMIN')"
+                to="/administration/dashboard">
+        Administration
+      </NuxtLink>
       <NuxtLink v-if="session.loggedIn" to="/options/profile">Profil</NuxtLink>
-
       <NuxtLink v-else to='/login'>Se connecter</NuxtLink>
     </nav>
   </header>
