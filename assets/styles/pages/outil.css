@@ -1,0 +1,17 @@
+.tool--section {
+  display: flex;
+  flex-direction: column;
+  margin: 64px 0;
+  gap: 24px;
+}
+.tool--section--cover {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=outil.css.map */

@@ -1,0 +1,87 @@
+@use './../utils/spacing' as s;
+@use './../utils/colors' as c;
+@use './../utils/font-sizes' as f;
+
+.dashboard {
+  max-width: unset;
+
+  padding: 0;
+
+  &--container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+  }
+
+  &--navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    height: 100%;
+    min-height: 100vh;
+
+    background-color: c.$zinc-900;
+    border: solid 1px c.$zinc-800;
+
+    a, button {
+      width: 100%;
+      border-radius: 0;
+      padding: s.$s3 s.$s4;
+    }
+
+    hr {
+      margin: s.$s2 0;
+      border: none;
+      border-top: 1px solid c.$zinc-800;
+    }
+  }
+
+  &--content {
+    display: flex;
+    flex-direction: column;
+
+    gap: s.$s4;
+
+    padding: s.$s3;
+
+    table, tr, td {
+      border: 1px inset c.$zinc-700;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    table {
+      width: 100%;
+
+      thead {
+        th {
+          padding: s.$s2;
+          font-size: f.$f4;
+
+          background-color: c.$zinc-800;
+        }
+      }
+
+      tr {
+        td {
+          padding: s.$s2;
+          font-size: f.$f3;
+
+          .row {
+            display: flex;
+            gap: s.$s2;
+          }
+        }
+
+        &:nth-child(odd) {
+          background-color: c.$zinc-900;
+        }
+
+
+        &:hover {
+          background-color: c.$zinc-800 !important;
+        }
+      }
+    }
+  }
+}

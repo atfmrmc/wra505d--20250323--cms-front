@@ -1,0 +1,96 @@
+@use "../../../utils/spacing" as s;
+@use "../../../utils/colors" as c;
+@use "../../../utils/font-sizes" as f;
+
+.tool {
+  &--comments {
+    display: flex;
+    flex-direction: column;
+
+    gap: s.$s3;
+
+    &--list {
+      display: flex;
+      flex-direction: column;
+
+      gap: s.$s3;
+
+      &--empty {
+        text-align: center;
+        margin: s.$s3 0;
+        color: c.$zinc-500;
+      }
+    }
+
+    &--item {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      padding: s.$s3;
+      gap: s.$s2;
+
+      border: 1px solid c.$zinc-900;
+      border-radius: s.$s1;
+
+      &--name {
+        font-size: f.$f4;
+
+        text-transform: capitalize;
+
+        svg {
+          color: c.$zinc-800;
+        }
+      }
+
+      &--comment {
+
+      }
+
+      &--btn {
+        opacity: 0;
+        position: absolute;
+
+        top: s.$s3;
+        right: s.$s3;
+      }
+
+      &:hover {
+        background: c.$zinc-900;
+        border: 1px solid c.$zinc-800;
+
+        .tool {
+          &--comments {
+            &--item {
+              &--name {
+                svg {
+                  color: c.$zinc-50;
+                }
+              }
+
+              &--btn {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &--form {
+      &--not-logged {
+        display: flex;
+        flex-direction: column;
+
+        padding: s.$s3;
+        gap: s.$s2;
+
+        border: 1px solid c.$zinc-900;
+        border-radius: s.$s1;
+      }
+
+
+    }
+  }
+}

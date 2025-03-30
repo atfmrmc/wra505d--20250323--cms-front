@@ -1,0 +1,33 @@
+.home--hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: 64px 0;
+  gap: 20px;
+}
+.home--hero--content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.home--hero--content svg {
+  width: min-content;
+  height: 64px;
+}
+.home--hero--image {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.home--hero--image img {
+  height: auto;
+  object-fit: cover;
+  filter: invert(1);
+}
+.home--grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 32px;
+}
+
+/*# sourceMappingURL=home.css.map */

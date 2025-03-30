@@ -1,0 +1,218 @@
+@use './utils/spacing' as s;
+@use './utils/colors' as c;
+@use './utils/font-sizes' as f;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  padding: s.$s5;
+
+  max-width: 1280px;
+
+  font-family: 'Noto Sans', sans-serif;
+
+  background-color: c.$zinc-950;
+  color: c.$zinc-50;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+
+  font-weight: 600;
+
+  text-transform: capitalize;
+
+  gap: s.$s3;
+}
+
+h1 {
+  font-size: f.$f10;
+}
+
+h2 {
+  font-size: f.$f7;
+}
+
+h3 {
+  font-size: f.$f5;
+}
+
+h4 {
+  font-size: f.$f4;
+}
+
+h5 {
+  font-size: f.$f3;
+}
+
+h6 {
+  font-size: f.$f3;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: c.$zinc-50;
+  text-decoration: none;
+}
+
+
+// Button styles
+.btn, button {
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+  width: max-content;
+
+  padding: s.$s2 s.$s4;
+  gap: s.$s2;
+
+  font-size: f.$f3;
+  color: c.$zinc-50;
+
+  outline: 1px solid c.$zinc-800;
+  border: none;
+  border-radius: s.$s1;
+  background: c.$zinc-900;
+
+  cursor: pointer;
+  appearance: none;
+
+  &:hover {
+    background: c.$zinc-700;
+    outline: 1px solid c.$zinc-600;
+  }
+
+  &.no-default {
+    background: none;
+    outline: none;
+
+    padding: s.$s1 s.$s3;
+
+    &:hover {
+      background: c.$zinc-700;
+      outline: 1px solid c.$zinc-600;
+    }
+  }
+}
+
+.tags {
+  &--container {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+    gap: s.$s1;
+
+    list-style: none;
+  }
+
+  display: flex;
+  align-items: center;
+
+  font-size: f.$f1;
+
+  padding: 0 s.$s2;
+  gap: s.$s1;
+
+  background: c.$zinc-800;
+  border: solid 1px c.$zinc-700;
+  border-radius: s.$s1;
+
+  svg {
+    max-width: 10px;
+
+    color: c.$zinc-500;
+  }
+}
+
+// Form Base Styles
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  margin: s.$s5 0;
+  padding: s.$s5;
+
+  gap: s.$s5;
+
+  border: solid 1px c.$zinc-900;
+  border-radius: s.$s1;
+
+  .center {
+    margin: 0 auto;
+  }
+
+  .heading {
+    font-size: f.$f6;
+  }
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+
+  gap: s.$s2;
+
+  font-size: f.$f4;
+}
+
+input, textarea {
+  padding: s.$s2;
+
+  font-size: f.$f3;
+
+  outline: transparent;
+  border: 1px solid c.$zinc-800;
+  border-radius: s.$s1;
+
+  background: c.$zinc-900;
+  color: c.$zinc-50;
+
+  width: 100%;
+
+  resize: vertical;
+
+  &:focus, {
+    outline: none;
+    border: solid 1px c.$zinc-600;
+    background: c.$zinc-800;
+  }
+}
+
+textarea {
+  min-height: 200px;
+}
+
+.checkbox-has-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: s.$s2;
+
+  font-size: f.$f3;
+
+  input {
+    width: max-content;
+    margin: 0;
+    padding: 0;
+  }
+}
